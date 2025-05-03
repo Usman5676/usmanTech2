@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>QRGenius - Free Advanced QR Code Generator</title>
+    <meta name="description"
+        content="Create professional QR codes for free with advanced customization options including colors, logos, and multiple content types.">
+    <script src="https://cdn.jsdelivr.net/npm/qrcodejs@1.0.0/qrcode.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <script src="script.js"></script>
+</head>
+<body>
+    <header>
+        <nav class="nav-container">
+            <div class="logo">
+                <i class="fas fa-qrcode"></i>
+                QRGenius
+            </div>
+            <div class="nav-links" id="navLinks">
+                <a href="#home">Home</a>
+                <a href="#generator">Generator</a>
+                <a href="#features">Features</a>
+                <a href="#templates">Templates</a>
+                <a href="#contact">Contact</a>
+            </div>
+            <button class="mobile-menu-btn" id="mobileMenuBtn">
+                <i class="fas fa-bars"></i>
+            </button>
+        </nav>
+    </header>
+
+    <main>
+        <section class="hero" id="home">
+            <h1>Create Professional QR Codes - 100% Free</h1>
+            <p>Generate, customize, and share QR codes with all premium features included at no cost. Perfect for
+                businesses, marketing, and personal use.</p>
+            <div class="btn-group">
+                <a href="#generator" class="btn">
+                    <i class="fas fa-qrcode"></i> Start Generating
+                </a>
+                <a href="#features" class="btn btn-outline">
+                    <i class="fas fa-star"></i> Explore Features
+                </a>
+            </div>
+        </section>
+
+        <section class="generator-section" id="generator">
+            <h2 class="section-title">QR Code Generator</h2>
+
+            <div class="tab-container">
+                <div class="tabs">
+                    <div class="tab active" data-tab="url">URL</div>
+                    <div class="tab" data-tab="text">Text</div>
+                    <div class="tab" data-tab="contact">Contact</div>
+                    <div class="tab" data-tab="wifi">WiFi</div>
+                    <div class="tab" data-tab="sms">SMS</div>
+                    <div class="tab" data-tab="email">Email</div>
+                </div>
+
+                <div class="tab-content active" id="url-tab">
+                    <div class="input-group">
+                        <label for="qr-url">Website URL</label>
+                        <input type="text" id="qr-url" placeholder="https://example.com">
+                    </div>
+                </div>
+
+                <div class="tab-content" id="text-tab">
+                    <div class="input-group">
+                        <label for="qr-text">Text Content</label>
+                        <textarea id="qr-text" rows="4" placeholder="Enter your text here..."></textarea>
+                    </div>
+                </div>
+
+                <div class="tab-content" id="contact-tab">
+                    <div class="input-group">
+                        <label for="contact-name">Name</label>
+                        <input type="text" id="contact-name" placeholder="John Doe">
+                    </div>
+                    <div class="input-group">
+                        <label for="contact-phone">Phone</label>
+                        <input type="text" id="contact-phone" placeholder="+1234567890">
+                    </div>
+                    <div class="input-group">
+                        <label for="contact-email">Email</label>
+                        <input type="text" id="contact-email" placeholder="john@example.com">
+                    </div>
+                    <div class="input-group">
+                        <label for="contact-company">Company</label>
+                        <input type="text" id="contact-company" placeholder="Company Name">
+                    </div>
+                </div>
+
+                <div class="tab-content" id="wifi-tab">
+                    <div class="input-group">
+                        <label for="wifi-ssid">Network Name (SSID)</label>
+                        <input type="text" id="wifi-ssid" placeholder="MyWiFiNetwork">
+                    </div>
+                    <div class="input-group">
+                        <label for="wifi-password">Password</label>
+                        <input type="text" id="wifi-password" placeholder="wifipassword">
+                    </div>
+                    <div class="input-group">
+                        <label for="wifi-security">Security Type</label>
+                        <select id="wifi-security">
+                            <option value="WPA">WPA/WPA2</option>
+                            <option value="WEP">WEP</option>
+                            <option value="">None</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="tab-content" id="sms-tab">
+                    <div class="input-group">
+                        <label for="sms-number">Phone Number</label>
+                        <input type="text" id="sms-number" placeholder="+1234567890">
+                    </div>
+                    <div class="input-group">
+                        <label for="sms-message">Message</label>
+                        <textarea id="sms-message" rows="4" placeholder="Your message here..."></textarea>
+                    </div>
+                </div>
+
+                <div class="tab-content" id="email-tab">
+                    <div class="input-group">
+                        <label for="email-address">Email Address</label>
+                        <input type="text" id="email-address" placeholder="recipient@example.com">
+                    </div>
+                    <div class="input-group">
+                        <label for="email-subject">Subject</label>
+                        <input type="text" id="email-subject" placeholder="Email subject">
+                    </div>
+                    <div class="input-group">
+                        <label for="email-body">Message</label>
+                        <textarea id="email-body" rows="4" placeholder="Your email content..."></textarea>
+                    </div>
+                </div>
+            </div>
+
+            <h3 class="section-title" style="font-size: 1.5rem; margin-top: 3rem;">Customization Options</h3>
+
+            <div class="input-group">
+                <label>QR Code Size <span id="size-value">256px</span></label>
+                <input type="range" id="qr-size" min="100" max="1000" value="256" step="10">
+            </div>
+
+            <div class="input-group">
+                <label>Colors</label>
+                <div class="color-pickers">
+                    <input type="color" id="color1" value="#000000">
+                    <span>Foreground</span>
+                    <input type="color" id="color2" value="#ffffff">
+                    <span>Background</span>
+                </div>
+            </div>
+
+            <div class="input-group">
+                <label>Add Logo/Image</label>
+                <div class="file-upload">
+                    <input type="file" id="qr-logo" accept="image/*">
+                    <label for="qr-logo" class="file-upload-label">
+                        <i class="fas fa-cloud-upload-alt"></i>
+                        <p>Click to upload your logo</p>
+                        <small>PNG, JPG (Max 2MB)</small>
+                    </label>
+                </div>
+            </div>
+
+            <div class="input-group">
+                <label>Error Correction Level</label>
+                <select id="error-level">
+                    <option value="L">Low (7%)</option>
+                    <option value="M">Medium (15%)</option>
+                    <option value="Q" selected>High (25%)</option>
+                    <option value="H">Highest (30%)</option>
+                </select>
+            </div>
+
+            <div class="btn-group">
+                <button onclick="generateQR()" class="btn" id="generate-btn">
+                    <i class="fas fa-qrcode"></i> Generate QR Code
+                </button>
+                <div class="action-buttons" id="action-buttons">
+                    <button onclick="downloadQR('png')" class="btn btn-secondary">
+                        <i class="fas fa-download"></i> Download PNG
+                    </button>
+                    <button onclick="downloadQR('svg')" class="btn btn-secondary">
+                        <i class="fas fa-download"></i> Download SVG
+                    </button>
+                    <button onclick="shareQR()" class="btn btn-tertiary">
+                        <i class="fas fa-share-alt"></i> Share
+                    </button>
+                </div>
+            </div>
+
+            <div id="qrcode">
+                <div class="qr-container">
+                    <div class="qr-preview" id="qr-preview"></div>
+                    <img id="qr-logo-preview" class="qr-logo" style="display: none;">
+                </div>
+                <p style="margin-top: 1.5rem; font-weight: 500;">Your custom QR code will appear here</p>
+            </div>
+
+            <div class="share-container" id="share-container"></div>
+        </section>
+
+        <section id="templates">
+            <h2 class="section-title">Professional Templates</h2>
+            <p>Choose from our professionally designed templates to get started quickly.</p>
+
+            <div class="templates">
+                <div class="template" onclick="selectTemplate('business')">
+                    <div class="template-icon">
+                        <i class="fas fa-briefcase"></i>
+                    </div>
+                    <h4>Business Card</h4>
+                    <p>Professional design with logo space</p>
+                </div>
+                <div class="template" onclick="selectTemplate('social')">
+                    <div class="template-icon">
+                        <i class="fas fa-share-alt"></i>
+                    </div>
+                    <h4>Social Media</h4>
+                    <p>Colorful style for social profiles</p>
+                </div>
+                <div class="template" onclick="selectTemplate('minimal')">
+                    <div class="template-icon">
+                        <i class="fas fa-minus"></i>
+                    </div>
+                    <h4>Minimal</h4>
+                    <p>Simple black & white design</p>
+                </div>
+                <div class="template" onclick="selectTemplate('event')">
+                    <div class="template-icon">
+                        <i class="fas fa-calendar-alt"></i>
+                    </div>
+                    <h4>Event</h4>
+                    <p>Perfect for tickets and invitations</p>
+                </div>
+                <div class="template" onclick="selectTemplate('restaurant')">
+                    <div class="template-icon">
+                        <i class="fas fa-utensils"></i>
+                    </div>
+                    <h4>Restaurant Menu</h4>
+                    <p>Food-friendly design with icons</p>
+                </div>
+                <div class="template" onclick="selectTemplate('product')">
+                    <div class="template-icon">
+                        <i class="fas fa-tag"></i>
+                    </div>
+                    <h4>Product Label</h4>
+                    <p>For packaging and product info</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="features">
+            <h2 class="section-title">All Features Included</h2>
+            <p>Enjoy these premium features at no cost:</p>
+
+            <div class="features">
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-sync-alt"></i>
+                    </div>
+                    <h3>Dynamic QR Codes</h3>
+                    <p>Edit content after creation without changing the QR code. Perfect for when your information needs
+                        to be updated frequently.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-chart-line"></i>
+                    </div>
+                    <h3>Advanced Analytics</h3>
+                    <p>Track scans in real-time with detailed reports including location, device, and time data.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-image"></i>
+                    </div>
+                    <h3>Logo Integration</h3>
+                    <p>Add your logo and branding to QR codes while maintaining full scan reliability.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-barcode"></i>
+                    </div>
+                    <h3>Bulk Generation</h3>
+                    <p>Create hundreds of QR codes at once with our batch processing feature.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-palette"></i>
+                    </div>
+                    <h3>Custom Colors</h3>
+                    <p>Match your brand with fully customizable foreground and background colors.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-shield-alt"></i>
+                    </div>
+                    <h3>Error Correction</h3>
+                    <p>Adjustable error correction levels ensure your QR codes remain scannable even when damaged.</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="contact">
+            <h2 class="section-title">Contact Us</h2>
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; margin-top: 2rem;">
+                <div>
+                    <h3 style="margin-bottom: 1.5rem; font-size: 1.5rem;">Contact Information</h3>
+                    <p style="margin-bottom: 1rem;"><i class="fas fa-envelope"
+                            style="margin-right: 10px; color: var(--primary-color);"></i> support@qrgenius.com</p>
+                    <p style="margin-bottom: 1rem;"><i class="fas fa-phone-alt"
+                            style="margin-right: 10px; color: var(--primary-color);"></i> +1 (555) 123-4567</p>
+                    <p><i class="fas fa-map-marker-alt" style="margin-right: 10px; color: var(--primary-color);"></i>
+                        123 QR Street, Digital City</p>
+                </div>
+                <div>
+                    <h3 style="margin-bottom: 1.5rem; font-size: 1.5rem;">Follow Us</h3>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                    </div>
+                    <h3 style="margin: 2rem 0 1rem; font-size: 1.5rem;">Newsletter</h3>
+                    <div style="display: flex; gap: 0.5rem;">
+                        <input type="email" placeholder="Your email"
+                            style="flex: 1; padding: 0.75rem; border: 2px solid #e9ecef; border-radius: var(--border-radius);">
+                        <button class="btn" style="padding: 0.75rem 1.5rem;">Subscribe</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="footer-content">
+            <div>
+                <p>© 2025 QRGenius. All rights reserved.</p>
+                <p style="margin-top: 0.5rem; font-size: 0.9rem; opacity: 0.8;">All features free forever!</p>
+            </div>
+            <div class="footer-links">
+                <a href="#">Privacy Policy</a>
+                <a href="#">Terms of Service</a>
+                <a href="#">FAQ</a>
+                <a href="#">API</a>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>
