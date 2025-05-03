@@ -1,0 +1,83 @@
+body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    margin: 0;
+}
+
+.container {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 50px; /* Adds space at the top to prevent cutting */
+}
+
+.wheel {
+    width: 300px;
+    height: 300px;
+    border-radius: 50%;
+    border: 5px solid #333;
+    position: relative;
+    overflow: hidden;
+    transition: transform 4s ease-out;
+}
+
+.wheel div {
+    width: 50%;
+    height: 50%;
+    position: absolute;
+    transform-origin: 100% 100%;
+    clip-path: polygon(0 0, 100% 100%, 0 100%);
+}
+
+.wheel div:nth-child(1) {
+    transform: rotate(0deg);
+}
+
+.wheel div:nth-child(2) {
+    transform: rotate(90deg);
+}
+
+.wheel div:nth-child(3) {
+    transform: rotate(180deg);
+}
+
+.wheel div:nth-child(4) {
+    transform: rotate(270deg);
+}
+
+.arrow {
+    position: absolute;
+    z-index: 1;
+    top: -10px;
+    left: 50%;
+    transform: translateX(-50%) rotate(180deg);
+    width: 0;
+    height: 0;
+    border-left: 15px solid transparent;
+    border-right: 15px solid transparent;
+    border-bottom: 30px solid black;
+}
+
+button {
+    background-color: #4CAF50;
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    font-size: 16px;
+    border-radius: 12px;
+    cursor: pointer;
+    transition: 0.4s;
+    margin-top: 20px; /* Adds space between the wheel and button */
+}
+
+button:hover {
+    background-color: rgb(255, 0, 0);
+    color: black;
+    border: 2px solid #4CAF50;
+    font-family: 'Times New Roman', Times, serif;
+    font-size: large;
+}
